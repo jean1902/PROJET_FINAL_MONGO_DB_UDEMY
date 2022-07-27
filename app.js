@@ -15,9 +15,14 @@ const session= require("express-session");
 const passport =require("passport");
 const passportLocalMongoose =require("passport-local");
 const randToken= require("rand-token");
+const router_reset =require("./router/ROUTER_reset");
 
-mongoose.connect("mongodb+srv://testWeb:test@cluster0.jxfd2.mongodb.net/cooking?retryWrites=true&w=majority") //mot depass de user et le nom de la bd a modifier dans le lien
 
+
+mongoose.connect("mongodb+srv://testWeb:test@cluster0.jxfd2.mongodb.net/cooking?retryWrites=true&w=majority" ,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
 app.get("/",function(req,res){
     res.render("index");
 })
@@ -56,6 +61,18 @@ app.use("/" ,router_signup)
 app.use("/" ,router_login)
 app.use("/" ,router_dashboard)
 app.use("/",router_forgot)
+app.use("/", router_reset);
+
+app.use(flash())
+// app.use(function(req,res,next){
+//     res.locals.currentUser =req.user;
+//     req.locals.error=req.flash("error");
+//     req.locals.success=req.flash("success")
+//     next();
+// })
+
+//  passer des message avec flash 
+
 app.listen( port , (req,res)=>{
     console.log('ecoute sur le port 1000');
 })

@@ -6,21 +6,11 @@ const express =require("express");
  const session= require("express-session");
 const passport =require("passport");
 const passportLocalMongoose =require("passport-local");
+const dashbordController =require('../controller/cont_dashboard');
 
 
- router.get("/dashboard" ,(req,res)=>{
-    res.render("../views/dashboard");
- })
- router.get("/logout",(req,res)=>{
-    req.logOut(function(err){
-        if(err){
-            console.log(err)
-        }else{
-            console.log("user deconnecte");
-        }
-    });
-    res.redirect("/login")
- })
+ router.get("/dashboard" ,dashbordController.dashbord) 
+ router.get("/logout" ,dashbordController.logout)
 
  module.exports = router;
 

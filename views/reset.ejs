@@ -39,7 +39,7 @@
                 <div class="col-lg-6 col-xl-6">
                     <div class="ui main text container segment" style="margin-top:50px;margin-right:100px;width:500px">
                         <h1 style="color:#badc58">Choose a new Password</h1>
-                        <form action="/reset/" method="POST">
+                        <form action="/reset/<%= token %>" method="POST">
                             <div>
                                 <div class="field">
                                     <div>
@@ -64,7 +64,7 @@
 
                 </div>
                 <div class="col-lg-6 col-xl-6">
-                    <img class="img-studio54" src="../images/gifh.gif" width="120%" style="margin-top:-80px;">
+                    <img class="img-studio54" src="../public/images/gifh.gif" width="120%" style="margin-top:-80px;">
 
                 </div>
 

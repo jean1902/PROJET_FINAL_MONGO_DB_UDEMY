@@ -9,6 +9,9 @@ const passportLocalMongoose =require("passport-local");
 const dashbordController =require('../controller/cont_dashboard');
 
 
+const flash = require('connect-flash')
+router.use(flash())
+
  router.get("/dashboard" ,dashbordController.dashbord) 
  router.get("/logout" ,dashbordController.logout)
 

@@ -22,11 +22,52 @@ const resetController= class{
           
           }else{
             res.render("../views/reset",{token:req.params.token})
-            res.redirect("/login")
           }
         })
     
-     }                                                  
+     }  
+     
+     static update_token_Password =function(req,res){
+      Reset.findOne({
+          resetPasswordToken:req.params.token,
+          resetPasswordExpires:{$gt:  Date.now()}
+        
+      },function(err,obj){
+        if(err){
+          console.log("token expired");
+          res.redirect("/login")
+        }else{
+         if(req.body.password == req.body.password2){
+              User.findOne({ username: obj.username},function(err,user){
+                  if(err){
+                      console.log(err);
+                  }else{
+                    console.log(user);
+                        user.update(req.body.password ,function(err){
+                          if(err){
+                              console.log(err);
+                          }else{
+                               user.save();
+                              const updateReset ={
+                                  resetPasswordToken:null,
+                                  resetPasswordExpires:null
+                              }
+                              Reset.findOneAndUpdate({resetPasswordToken : req.params.token},updateReset,function(err,obj1){
+                                  if(err){
+                                      console.log(err);
+  
+                                  } else{
+                                      // res.redirect("/login")
+                                  }
+                              })
+                          }
+                      })
+                  }
+              })
+         }}
+        })
+   }
+
     
 }
 module.exports =resetController;

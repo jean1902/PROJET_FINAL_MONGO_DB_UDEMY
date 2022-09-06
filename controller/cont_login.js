@@ -41,8 +41,8 @@ const loginController = class{
                         if(err){
                             console.log(err);
                         }else{
-                            passport.authenticate("local")(req,res,function(){
-                               
+                            passport.authenticate("local")(req , res, function(){
+                        
                                 res.redirect("/dashboard")
                             })
                         }

@@ -33,7 +33,7 @@ const  signupController = class{
             console.log(err);
             return res.render("signup");
           } else {
-            passport.authenticate("local")(req, res, function () {
+            passport.authenticate("local")(req, res, function(){
               res.redirect("/login");
             });
           }

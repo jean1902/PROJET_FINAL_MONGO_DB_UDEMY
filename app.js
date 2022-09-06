@@ -63,7 +63,7 @@ app.use("/" ,router_dashboard)
 app.use("/",router_forgot)
 app.use("/", router_reset);
 
-app.use(flash())
+
 // app.use(function(req,res,next){
 //     res.locals.currentUser =req.user;
 //     req.locals.error=req.flash("error");

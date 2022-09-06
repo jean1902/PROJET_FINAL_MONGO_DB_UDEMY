@@ -8,6 +8,6 @@ router.get("/reset", resetController.reset);
 
 router.get("/reset/:token", resetController.tokenPage_redirection);
 
-router.post( "/reset/:token",urlencodedParser, resetController.tokenPage_redirection);
+router.post( "/reset/:token",urlencodedParser, resetController.update_token_Password);
 
 module.exports = router;
